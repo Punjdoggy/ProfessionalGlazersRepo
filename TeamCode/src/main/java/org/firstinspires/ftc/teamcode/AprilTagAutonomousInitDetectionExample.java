@@ -99,12 +99,12 @@ public class AprilTagAutonomousInitDetectionExample extends LinearOpMode
 
                 for(AprilTagDetection tag : currentDetections)
                 {
-                    if(tag.id == LEFT || tag.id == MIDDLE || tag.id == RIGHT)
-                    {
+//                    if(tag.id == LEFT || tag.id == MIDDLE || tag.id == RIGHT)
+//                    {
                         tagOfInterest = tag;
                         tagFound = true;
                         break;
-                    }
+//                    }
                 }
 
                 if(tagFound)
