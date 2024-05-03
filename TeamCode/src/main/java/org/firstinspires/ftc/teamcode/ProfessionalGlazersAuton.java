@@ -27,6 +27,7 @@ public class ProfessionalGlazersAuton extends LinearOpMode
     private DcMotor rightBackDrive = null;
 
 
+
     OpenCvCamera camera;
     AprilTagDetectionPipeline aprilTagDetectionPipeline;
 
@@ -146,7 +147,7 @@ public class ProfessionalGlazersAuton extends LinearOpMode
 
                 if(tagOfInterest == null)
                 {
-                    telemetry.addLine("(The tag has never been seen)");
+                    telemetry.addLine("(The tag has never been seen >;( )");
                 }
                 else
                 {
@@ -182,18 +183,31 @@ public class ProfessionalGlazersAuton extends LinearOpMode
         
         
         if(tagOfInterest == null){
-            //default path
+            //This is where we put code for what the robot does when it does not see anything
+            driveForward(0.5);
+            sleep(2000);
+
         }else{
             switch(tagOfInterest.id){
                 case 1:
+                    //see tag 1, this is what the robot does
                     driveForward(0.5);
+                     sleep(2000);
+
                     break;
                 case 2:
+                    //see tag 2, this is what the robot does
                     driveBackward(0.4);
+                    sleep(2000);
+
                     break;
                 case 3:
+                    // see tag 3, this is what the robot does
+
                     break;
 		        case 4:
+                    // see tag 4, this is what the robot does
+                    
                     break;
             }
         }
