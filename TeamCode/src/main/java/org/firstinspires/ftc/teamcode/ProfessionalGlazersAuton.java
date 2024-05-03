@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
@@ -88,10 +89,10 @@ public class ProfessionalGlazersAuton extends LinearOpMode
         rightFrontDrive = hardwareMap.get(DcMotor.class, "1");
 
 
-	    rightFrontDrive.setDirection(DcMotor.Direction.FORWARD);
         leftFrontDrive.setDirection(DcMotor.Direction.FORWARD);
-        rightBackDrive.setDirection(DcMotor.Direction.FORWARD);
-        leftBackDrive.setDirection(DcMotor.Direction.FORWARD);
+        leftBackDrive.setDirection(DcMotor.Direction.REVERSE);
+        rightFrontDrive.setDirection(DcMotor.Direction.FORWARD);
+        rightBackDrive.setDirection(DcMotor.Direction.REVERSE);
 
 	    leftFrontDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         leftBackDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -202,10 +203,15 @@ public class ProfessionalGlazersAuton extends LinearOpMode
 
                     break;
                 case 3:
+                    strafeLeft(0.5);
+                    sleep(2000);
                     // see tag 3, this is what the robot does
 
                     break;
 		        case 4:
+                    strafeRight(0.5);
+                    sleep(2000);
+
                     // see tag 4, this is what the robot does
                     
                     break;
@@ -243,6 +249,24 @@ public class ProfessionalGlazersAuton extends LinearOpMode
         rightBackDrive.setPower(-speed);
         leftBackDrive.setPower(-speed);
         rightFrontDrive.setPower(-speed);
+    }
+
+    void strafeRight(double speed) {
+
+        leftFrontDrive.setPower(-speed);
+        rightBackDrive.setPower(-speed);
+        leftBackDrive.setPower(speed);
+        rightFrontDrive.setPower(speed);
+
+    }
+
+    void strafeLeft(double speed) {
+
+        leftFrontDrive.setPower(speed);
+        rightBackDrive.setPower(speed);
+        leftBackDrive.setPower(-speed);
+        rightFrontDrive.setPower(-speed);
+
     }
 
     
