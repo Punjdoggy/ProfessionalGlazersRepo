@@ -33,6 +33,8 @@ import org.openftc.easyopencv.OpenCvInternalCamera;
 
 import java.util.ArrayList;
 
+
+//THIS IS USED TO TEST IF DETECTION WORKS AND WHAT THE NUMBERS ARE FOR THE APRIL TAG, NOT FOR ANY MOVEMENT TESTING
 @TeleOp
 public class AprilTagAutonomousInitDetectionExample extends LinearOpMode
 {
