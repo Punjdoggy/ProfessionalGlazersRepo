@@ -269,6 +269,21 @@ public class ProfessionalGlazersAuton extends LinearOpMode
 
     }
 
-    
+    void turnleft90deg(double speed){
+        leftFrontDrive.setPower(speed);
+        rightBackDrive.setPower(-speed);
+        leftBackDrive.setPower(speed);
+        rightFrontDrive.setPower(-speed);
+    }
+
+    void turnright90deg(double speed){
+        leftFrontDrive.setPower(-speed);
+        rightBackDrive.setPower(speed);
+        leftBackDrive.setPower(-speed);
+        rightFrontDrive.setPower(speed);
+    }
+
+
+
 
 }
