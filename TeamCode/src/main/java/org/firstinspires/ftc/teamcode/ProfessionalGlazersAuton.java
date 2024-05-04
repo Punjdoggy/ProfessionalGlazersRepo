@@ -33,6 +33,7 @@ public class ProfessionalGlazersAuton extends LinearOpMode
     AprilTagDetectionPipeline aprilTagDetectionPipeline;
 
     static final double FEET_PER_METER = 3.28084;
+   
 
     // Lens intrinsics
     // UNITS ARE PIXELS
@@ -211,6 +212,9 @@ public class ProfessionalGlazersAuton extends LinearOpMode
 		        case 4:
                     strafeRight(0.5);
                     sleep(2000);
+                    turnleft90deg(0.5);
+                    sleep(2000);
+
 
                     // see tag 4, this is what the robot does
                     
