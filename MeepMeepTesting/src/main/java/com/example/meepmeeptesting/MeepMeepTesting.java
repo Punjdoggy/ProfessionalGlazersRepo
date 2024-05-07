@@ -138,6 +138,8 @@ public class MeepMeepTesting {
         try { img = ImageIO.read(new File("MeepMeepTesting/src/resources/PostalPanic_Stage.png")); }
         catch (IOException e) {}
 
+        //These are all for April Tag Detection, and these instances all go to the 3rd box, still need to do 2nd and 1st box mapping
+
 
         meepMeep.setBackground(img)
                 .setBackgroundAlpha(0.95f)
