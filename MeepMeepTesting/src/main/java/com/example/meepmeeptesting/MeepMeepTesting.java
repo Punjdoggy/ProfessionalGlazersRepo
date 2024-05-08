@@ -29,8 +29,7 @@ public class MeepMeepTesting {
                                 .splineToLinearHeading(new Pose2d(19, -42.5,Math.toRadians(-90)), Math.toRadians(-180))
                                 .forward(10)
                                 .waitSeconds(5)
-                                .splineToSplineHeading(new Pose2d(0, -42.6, Math.toRadians(90)), Math.toRadians(0)) //ask lachie why it does a turn then does a rotation to forward
-                                .turn(Math.toRadians(90))
+                                .splineToSplineHeading(new Pose2d(0, -42.6, Math.toRadians(-180)), Math.toRadians(0)) //ask lachie why it does a turn then does a rotation to forward
                                 .forward(20)
                                 .splineToSplineHeading(new Pose2d(-41.0,42.9, Math.toRadians(180)), Math.toRadians(90))
                                 .forward(17)
@@ -67,8 +66,7 @@ public class MeepMeepTesting {
                                 .splineToLinearHeading(new Pose2d(19, -42.5,Math.toRadians(-90)), Math.toRadians(-180))
                                 .forward(10)
                                 .waitSeconds(5)
-                                .splineToSplineHeading(new Pose2d(0, -42.6, Math.toRadians(90)), Math.toRadians(0)) //ask lachie why it does a turn then does a rotation to forward
-                                .turn(Math.toRadians(-90))
+                                .splineToSplineHeading(new Pose2d(0, -42.6, Math.toRadians(0)), Math.toRadians(0)) //ask lachie why it does a turn then does a rotation to forward
                                 .forward(20)
                                 .splineToSplineHeading(new Pose2d(41.0,42.9, Math.toRadians(0)), Math.toRadians(90))
                                 .forward(17)
@@ -100,23 +98,32 @@ public class MeepMeepTesting {
                 .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 15)
                 .followTrajectorySequence(drive ->
                         drive.trajectorySequenceBuilder(new Pose2d(-40.81, 62.78, Math.toRadians(-90)))
-                                .turn(Math.toRadians(0))
-                                .forward(20)
-                                .turn(Math.toRadians(90))
-                                .forward(60)
-                                .turn(Math.toRadians(90))
+                                .splineToLinearHeading(new Pose2d(19, 42.5,Math.toRadians(90)), Math.toRadians(-180))
                                 .forward(10)
                                 .waitSeconds(5)
-                                .turn(Math.toRadians(-180))
-                                .forward(10)
-                                .turn(Math.toRadians(90))
-                                .forward(25)
-                                .turn(Math.toRadians(-90))
-                                .forward(80)
-                                .turn(Math.toRadians(90))
-                                .forward(15)
-
+                                .splineToSplineHeading(new Pose2d(0, 42.6, Math.toRadians(0)), Math.toRadians(0)) //ask lachie why it does a turn then does a rotation to forward
+                                .forward(20)
+                                .splineToSplineHeading(new Pose2d(41.0,-42.9, Math.toRadians(0)), Math.toRadians(90))
+                                .forward(17)
                                 .build()
+
+//                                .turn(Math.toRadians(0))
+//                                .forward(20)
+//                                .turn(Math.toRadians(90))
+//                                .forward(60)
+//                                .turn(Math.toRadians(90))
+//                                .forward(10)
+//                                .waitSeconds(5)
+//                                .turn(Math.toRadians(-180))
+//                                .forward(10)
+//                                .turn(Math.toRadians(90))
+//                                .forward(25)
+//                                .turn(Math.toRadians(-90))
+//                                .forward(80)
+//                                .turn(Math.toRadians(90))
+//                                .forward(15)
+//
+//                                .build()
                 );
 
         RoadRunnerBotEntity BlueBot2 = new DefaultBotBuilder(meepMeep)
@@ -126,23 +133,32 @@ public class MeepMeepTesting {
                 .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 15)
                 .followTrajectorySequence(drive ->
                         drive.trajectorySequenceBuilder(new Pose2d(-40.81, 62.78, Math.toRadians(-90)))
-                                .turn(Math.toRadians(0))
-                                .forward(20)
-                                .turn(Math.toRadians(90))
-                                .forward(60)
-                                .turn(Math.toRadians(90))
+                                .splineToLinearHeading(new Pose2d(19, 42.5,Math.toRadians(90)), Math.toRadians(-180))
                                 .forward(10)
                                 .waitSeconds(5)
-                                .turn(Math.toRadians(-180))
-                                .forward(10)
-                                .turn(Math.toRadians(-90))
-                                .forward(60)
-                                .turn(Math.toRadians(90))
-                                .forward(80)
-                                .turn(Math.toRadians(-90))
-                                .forward(15)
-
+                                .splineToSplineHeading(new Pose2d(0, 42.6, Math.toRadians(-180)), Math.toRadians(0)) //ask lachie why it does a turn then does a rotation to forward
+                                .forward(20)
+                                .splineToSplineHeading(new Pose2d(-41.0,-42.9, Math.toRadians(-180)), Math.toRadians(90))
+                                .forward(17)
                                 .build()
+
+//                                .turn(Math.toRadians(0))
+//                                .forward(20)
+//                                .turn(Math.toRadians(90))
+//                                .forward(60)
+//                                .turn(Math.toRadians(90))
+//                                .forward(10)
+//                                .waitSeconds(5)
+//                                .turn(Math.toRadians(-180))
+//                                .forward(10)
+//                                .turn(Math.toRadians(-90))
+//                                .forward(60)
+//                                .turn(Math.toRadians(90))
+//                                .forward(80)
+//                                .turn(Math.toRadians(-90))
+//                                .forward(15)
+
+//                                .build()
                 );
 
         Image img = null;
