@@ -15,25 +15,35 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+
 public class MeepMeepTesting {
+
+    private static RoadRunnerBotEntity RedBot1;
+    private static RoadRunnerBotEntity RedBot2;
+    private static RoadRunnerBotEntity BlueBot1;
+    private static RoadRunnerBotEntity BlueBot2;
     public static void main(String[] args) {
         MeepMeep meepMeep = new MeepMeep(900);
 
-        RoadRunnerBotEntity RedBot1 = new DefaultBotBuilder(meepMeep)
-                // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
-                // Set bot colour: Blue Dark, Blue Light, Red Dark, Red Light
-                .setColorScheme(new ColorSchemeRedDark())
-                .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 15)
-                .followTrajectorySequence(drive ->
-                        drive.trajectorySequenceBuilder(new Pose2d(-40.81, -62.78, Math.toRadians(90.00)))
-                                .splineToLinearHeading(new Pose2d(19, -42.5,Math.toRadians(-90)), Math.toRadians(-180))
-                                .forward(10)
-                                .waitSeconds(5)
-                                .splineToSplineHeading(new Pose2d(0, -42.6, Math.toRadians(-180)), Math.toRadians(0)) //ask lachie why it does a turn then does a rotation to forward
-                                .forward(20)
-                                .splineToSplineHeading(new Pose2d(-41.0,42.9, Math.toRadians(180)), Math.toRadians(90))
-                                .forward(17)
-                                .build()
+    switch (Util.PREDEFINED_STATE) {
+
+        case LEFT:
+            System.out.println("LEFT");
+             RedBot1 = new DefaultBotBuilder(meepMeep) //LEFT PARK
+                    // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
+                    // Set bot colour: Blue Dark, Blue Light, Red Dark, Red Light
+                    .setColorScheme(new ColorSchemeRedDark())
+                    .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 15)
+                    .followTrajectorySequence(drive ->
+                                    drive.trajectorySequenceBuilder(new Pose2d(-40.81, -62.78, Math.toRadians(90.00)))
+                                            .splineToLinearHeading(new Pose2d(19, -42.5,Math.toRadians(-90)), Math.toRadians(-180))
+                                            .forward(10)
+                                            .waitSeconds(5)
+                                            .splineToSplineHeading(new Pose2d(0, -42.6, Math.toRadians(-180)), Math.toRadians(0)) //ask lachie why it does a turn then does a rotation to forward
+                                            .forward(20)
+                                            .splineToSplineHeading(new Pose2d(-41.0,42.9, Math.toRadians(180)), Math.toRadians(90))
+                                            .forward(17)
+                                            .build()
 
 //                        original code
 //                                .turn(Math.toRadians(0))
@@ -53,24 +63,24 @@ public class MeepMeepTesting {
 //                                .forward(15)
 //                                .build()
 
-                );
+                    );
 
-        RoadRunnerBotEntity RedBot2 = new DefaultBotBuilder(meepMeep)
-                // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
-                // Set bot colour: Blue Dark, Blue Light, Red Dark, Red Light
-                .setColorScheme(new ColorSchemeRedLight())
-                .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 15)
-                .followTrajectorySequence(drive ->
-                        drive.trajectorySequenceBuilder(new Pose2d(-40.81, -62.78, Math.toRadians(90.00)))
+             RedBot2 = new DefaultBotBuilder(meepMeep) //RIGHT PARK
+                    // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
+                    // Set bot colour: Blue Dark, Blue Light, Red Dark, Red Light
+                    .setColorScheme(new ColorSchemeRedLight())
+                    .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 15)
+                    .followTrajectorySequence(drive ->
+                                    drive.trajectorySequenceBuilder(new Pose2d(-40.81, -62.78, Math.toRadians(90.00)))
 
-                                .splineToLinearHeading(new Pose2d(19, -42.5,Math.toRadians(-90)), Math.toRadians(-180))
-                                .forward(10)
-                                .waitSeconds(5)
-                                .splineToSplineHeading(new Pose2d(0, -42.6, Math.toRadians(0)), Math.toRadians(0)) //ask lachie why it does a turn then does a rotation to forward
-                                .forward(20)
-                                .splineToSplineHeading(new Pose2d(41.0,42.9, Math.toRadians(0)), Math.toRadians(90))
-                                .forward(17)
-                                .build()
+                                            .splineToLinearHeading(new Pose2d(19, -42.5,Math.toRadians(-90)), Math.toRadians(-180))
+                                            .forward(10)
+                                            .waitSeconds(5)
+                                            .splineToSplineHeading(new Pose2d(0, -42.6, Math.toRadians(0)), Math.toRadians(0)) //ask lachie why it does a turn then does a rotation to forward
+                                            .forward(20)
+                                            .splineToSplineHeading(new Pose2d(41.0,42.9, Math.toRadians(0)), Math.toRadians(90))
+                                            .forward(17)
+                                            .build()
 
 //                                .turn(Math.toRadians(0))
 //                                .forward(20)
@@ -89,23 +99,23 @@ public class MeepMeepTesting {
 //                                .forward(15)
 
 
-                );
+                    );
 
-        RoadRunnerBotEntity BlueBot1 = new DefaultBotBuilder(meepMeep)
-                // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
-                // Set bot colour: Blue Dark, Blue Light, Red Dark, Red Light
-                .setColorScheme(new ColorSchemeBlueDark())
-                .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 15)
-                .followTrajectorySequence(drive ->
-                        drive.trajectorySequenceBuilder(new Pose2d(-40.81, 62.78, Math.toRadians(-90)))
-                                .splineToLinearHeading(new Pose2d(19, 42.5,Math.toRadians(90)), Math.toRadians(-180))
-                                .forward(10)
-                                .waitSeconds(5)
-                                .splineToSplineHeading(new Pose2d(0, 42.6, Math.toRadians(0)), Math.toRadians(0)) //ask lachie why it does a turn then does a rotation to forward
-                                .forward(20)
-                                .splineToSplineHeading(new Pose2d(41.0,-42.9, Math.toRadians(0)), Math.toRadians(90))
-                                .forward(17)
-                                .build()
+             BlueBot1 = new DefaultBotBuilder(meepMeep) //LEFT PARK
+                    // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
+                    // Set bot colour: Blue Dark, Blue Light, Red Dark, Red Light
+                    .setColorScheme(new ColorSchemeBlueDark())
+                    .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 15)
+                    .followTrajectorySequence(drive ->
+                                    drive.trajectorySequenceBuilder(new Pose2d(-40.81, 62.78, Math.toRadians(-90)))
+                                            .splineToLinearHeading(new Pose2d(19, 42.5,Math.toRadians(90)), Math.toRadians(-180))
+                                            .forward(10)
+                                            .waitSeconds(5)
+                                            .splineToSplineHeading(new Pose2d(0, 42.6, Math.toRadians(0)), Math.toRadians(0)) //ask lachie why it does a turn then does a rotation to forward
+                                            .forward(20)
+                                            .splineToSplineHeading(new Pose2d(41.0,-42.9, Math.toRadians(0)), Math.toRadians(90))
+                                            .forward(17)
+                                            .build()
 
 //                                .turn(Math.toRadians(0))
 //                                .forward(20)
@@ -124,23 +134,24 @@ public class MeepMeepTesting {
 //                                .forward(15)
 //
 //                                .build()
-                );
+                    );
 
-        RoadRunnerBotEntity BlueBot2 = new DefaultBotBuilder(meepMeep)
-                // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
-                // Set bot colour: Blue Dark, Blue Light, Red Dark, Red Light
-                .setColorScheme(new ColorSchemeBlueDark())
-                .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 15)
-                .followTrajectorySequence(drive ->
-                        drive.trajectorySequenceBuilder(new Pose2d(-40.81, 62.78, Math.toRadians(-90)))
-                                .splineToLinearHeading(new Pose2d(19, 42.5,Math.toRadians(90)), Math.toRadians(-180))
-                                .forward(10)
-                                .waitSeconds(5)
-                                .splineToSplineHeading(new Pose2d(0, 42.6, Math.toRadians(-180)), Math.toRadians(0)) //ask lachie why it does a turn then does a rotation to forward
-                                .forward(20)
-                                .splineToSplineHeading(new Pose2d(-41.0,-42.9, Math.toRadians(-180)), Math.toRadians(90))
-                                .forward(17)
-                                .build()
+
+             BlueBot2 = new DefaultBotBuilder(meepMeep) //RIGHT PARK
+                    // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
+                    // Set bot colour: Blue Dark, Blue Light, Red Dark, Red Light
+                    .setColorScheme(new ColorSchemeBlueDark())
+                    .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 15)
+                    .followTrajectorySequence(drive ->
+                                    drive.trajectorySequenceBuilder(new Pose2d(-40.81, 62.78, Math.toRadians(-90)))
+                                            .splineToLinearHeading(new Pose2d(19, 42.5,Math.toRadians(90)), Math.toRadians(-180))
+                                            .forward(10)
+                                            .waitSeconds(5)
+                                            .splineToSplineHeading(new Pose2d(0, 42.6, Math.toRadians(-180)), Math.toRadians(0)) //ask lachie why it does a turn then does a rotation to forward
+                                            .forward(20)
+                                            .splineToSplineHeading(new Pose2d(-41.0,-42.9, Math.toRadians(-180)), Math.toRadians(90))
+                                            .forward(17)
+                                            .build()
 
 //                                .turn(Math.toRadians(0))
 //                                .forward(20)
@@ -159,7 +170,304 @@ public class MeepMeepTesting {
 //                                .forward(15)
 
 //                                .build()
-                );
+                    );
+             break;
+        case MIDDLE:
+            System.out.println("MIDDLE");
+            RedBot1 = new DefaultBotBuilder(meepMeep) //LEFT PARK
+                    // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
+                    // Set bot colour: Blue Dark, Blue Light, Red Dark, Red Light
+                    .setColorScheme(new ColorSchemeRedDark())
+                    .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 15)
+                    .followTrajectorySequence(drive ->
+                                    drive.trajectorySequenceBuilder(new Pose2d(-40.81, -62.78, Math.toRadians(90.00)))
+                                            .splineToLinearHeading(new Pose2d(0, -42.5,Math.toRadians(-90)), Math.toRadians(-180))
+                                            .forward(10)
+                                            .waitSeconds(5)
+                                            .splineToSplineHeading(new Pose2d(0, -42.6, Math.toRadians(-180)), Math.toRadians(0)) //ask lachie why it does a turn then does a rotation to forward
+                                            .forward(20)
+                                            .splineToSplineHeading(new Pose2d(-41.0,42.9, Math.toRadians(180)), Math.toRadians(90))
+                                            .forward(17)
+                                            .build()
+
+//                        original code
+//                                .turn(Math.toRadians(0))
+//                                .forward(20)
+//                                .turn(Math.toRadians(-90))
+//                                .forward(60)
+//                                .turn(Math.toRadians(-90))
+//                                .forward(10)
+//                                .waitSeconds(5)
+//                                .turn(Math.toRadians(-180))
+//                                .forward(10)
+//                                .turn(Math.toRadians(90))
+//                                .forward(25)
+//                                .turn(Math.toRadians(-90))
+//                                .forward(80)
+//                                .turn(Math.toRadians(90))
+//                                .forward(15)
+//                                .build()
+
+                    );
+
+            RedBot2 = new DefaultBotBuilder(meepMeep) // RIGHT PARK
+                    // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
+                    // Set bot colour: Blue Dark, Blue Light, Red Dark, Red Light
+                    .setColorScheme(new ColorSchemeRedLight())
+                    .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 15)
+                    .followTrajectorySequence(drive ->
+                                    drive.trajectorySequenceBuilder(new Pose2d(-40.81, -62.78, Math.toRadians(90.00)))
+
+                                            .splineToLinearHeading(new Pose2d(0, -42.5,Math.toRadians(-90)), Math.toRadians(-180))
+                                            .forward(10)
+                                            .waitSeconds(5)
+                                            .splineToSplineHeading(new Pose2d(0, -42.6, Math.toRadians(0)), Math.toRadians(0)) //ask lachie why it does a turn then does a rotation to forward
+                                            .forward(20)
+                                            .splineToSplineHeading(new Pose2d(41.0,42.9, Math.toRadians(0)), Math.toRadians(90))
+                                            .forward(17)
+                                            .build()
+
+//                                .turn(Math.toRadians(0))
+//                                .forward(20)
+//                                .turn(Math.toRadians(-90))
+//                                .forward(60)
+//                                .turn(Math.toRadians(-90))
+//                                .forward(10)
+//                                .waitSeconds(5)
+//                                .turn(Math.toRadians(-180))
+//                                .forward(10)
+//                                .turn(Math.toRadians(-90))
+//                                .forward(25)
+//                                .turn(Math.toRadians(90))
+//                                .forward(80)
+//                                .turn(Math.toRadians(-90))
+//                                .forward(15)
+
+
+                    );
+
+            BlueBot1 = new DefaultBotBuilder(meepMeep) //LEFT PARK
+                    // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
+                    // Set bot colour: Blue Dark, Blue Light, Red Dark, Red Light
+                    .setColorScheme(new ColorSchemeBlueDark())
+                    .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 15)
+                    .followTrajectorySequence(drive ->
+                                    drive.trajectorySequenceBuilder(new Pose2d(-40.81, 62.78, Math.toRadians(-90)))
+                                            .splineToLinearHeading(new Pose2d(0, 42.5,Math.toRadians(90)), Math.toRadians(-180))
+                                            .forward(10)
+                                            .waitSeconds(5)
+                                            .splineToSplineHeading(new Pose2d(0, 42.6, Math.toRadians(0)), Math.toRadians(0)) //ask lachie why it does a turn then does a rotation to forward
+                                            .forward(20)
+                                            .splineToSplineHeading(new Pose2d(41.0,-42.9, Math.toRadians(0)), Math.toRadians(90))
+                                            .forward(17)
+                                            .build()
+
+//                                .turn(Math.toRadians(0))
+//                                .forward(20)
+//                                .turn(Math.toRadians(90))
+//                                .forward(60)
+//                                .turn(Math.toRadians(90))
+//                                .forward(10)
+//                                .waitSeconds(5)
+//                                .turn(Math.toRadians(-180))
+//                                .forward(10)
+//                                .turn(Math.toRadians(90))
+//                                .forward(25)
+//                                .turn(Math.toRadians(-90))
+//                                .forward(80)
+//                                .turn(Math.toRadians(90))
+//                                .forward(15)
+//
+//                                .build()
+                    );
+
+
+            BlueBot2 = new DefaultBotBuilder(meepMeep) //RIGHT PARK
+                    // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
+                    // Set bot colour: Blue Dark, Blue Light, Red Dark, Red Light
+                    .setColorScheme(new ColorSchemeBlueDark())
+                    .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 15)
+                    .followTrajectorySequence(drive ->
+                                    drive.trajectorySequenceBuilder(new Pose2d(-40.81, 62.78, Math.toRadians(-90)))
+                                            .splineToLinearHeading(new Pose2d(0, 42.5,Math.toRadians(90)), Math.toRadians(-180))
+                                            .forward(10)
+                                            .waitSeconds(5)
+                                            .splineToSplineHeading(new Pose2d(0, 42.6, Math.toRadians(-180)), Math.toRadians(0)) //ask lachie why it does a turn then does a rotation to forward
+                                            .forward(20)
+                                            .splineToSplineHeading(new Pose2d(-41.0,-42.9, Math.toRadians(-180)), Math.toRadians(90))
+                                            .forward(17)
+                                            .build()
+
+                    );
+
+//                                .turn(Math.toRadians(0))
+//                                .forward(20)
+//                                .turn(Math.toRadians(90))
+//                                .forward(60)
+//                                .turn(Math.toRadians(90))
+//                                .forward(10)
+//                                .waitSeconds(5)
+//                                .turn(Math.toRadians(-180))
+//                                .forward(10)
+//                                .turn(Math.toRadians(-90))
+//                                .forward(60)
+//                                .turn(Math.toRadians(90))
+//                                .forward(80)
+//                                .turn(Math.toRadians(-90))
+//                                .forward(15)
+
+//                                .build()
+            break;
+        case RIGHT:
+            System.out.println("RIGHT");
+            RedBot1 = new DefaultBotBuilder(meepMeep) //LEFT PARK
+                    // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
+                    // Set bot colour: Blue Dark, Blue Light, Red Dark, Red Light
+                    .setColorScheme(new ColorSchemeRedDark())
+                    .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 15)
+                    .followTrajectorySequence(drive ->
+                                    drive.trajectorySequenceBuilder(new Pose2d(-40.81, -62.78, Math.toRadians(90.00)))
+                                            .splineToLinearHeading(new Pose2d(-19, -42.5,Math.toRadians(-90)), Math.toRadians(-180))
+                                            .forward(10)
+                                            .waitSeconds(5)
+                                            .splineToSplineHeading(new Pose2d(0, -42.6, Math.toRadians(-180)), Math.toRadians(0)) //ask lachie why it does a turn then does a rotation to forward
+                                            .forward(20)
+                                            .splineToSplineHeading(new Pose2d(-41.0,42.9, Math.toRadians(180)), Math.toRadians(90))
+                                            .forward(17)
+                                            .build()
+
+//                        original code
+//                                .turn(Math.toRadians(0))
+//                                .forward(20)
+//                                .turn(Math.toRadians(-90))
+//                                .forward(60)
+//                                .turn(Math.toRadians(-90))
+//                                .forward(10)
+//                                .waitSeconds(5)
+//                                .turn(Math.toRadians(-180))
+//                                .forward(10)
+//                                .turn(Math.toRadians(90))
+//                                .forward(25)
+//                                .turn(Math.toRadians(-90))
+//                                .forward(80)
+//                                .turn(Math.toRadians(90))
+//                                .forward(15)
+//                                .build()
+
+                    );
+
+            RedBot2 = new DefaultBotBuilder(meepMeep) //RIGHT PARK
+                    // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
+                    // Set bot colour: Blue Dark, Blue Light, Red Dark, Red Light
+                    .setColorScheme(new ColorSchemeRedLight())
+                    .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 15)
+                    .followTrajectorySequence(drive ->
+                                    drive.trajectorySequenceBuilder(new Pose2d(-40.81, -62.78, Math.toRadians(90.00)))
+
+                                            .splineToLinearHeading(new Pose2d(-19, -42.5,Math.toRadians(-90)), Math.toRadians(-180))
+                                            .forward(10)
+                                            .waitSeconds(5)
+                                            .splineToSplineHeading(new Pose2d(0, -42.6, Math.toRadians(0)), Math.toRadians(0)) //ask lachie why it does a turn then does a rotation to forward
+                                            .forward(20)
+                                            .splineToSplineHeading(new Pose2d(41.0,42.9, Math.toRadians(0)), Math.toRadians(90))
+                                            .forward(17)
+                                            .build()
+
+//                                .turn(Math.toRadians(0))
+//                                .forward(20)
+//                                .turn(Math.toRadians(-90))
+//                                .forward(60)
+//                                .turn(Math.toRadians(-90))
+//                                .forward(10)
+//                                .waitSeconds(5)
+//                                .turn(Math.toRadians(-180))
+//                                .forward(10)
+//                                .turn(Math.toRadians(-90))
+//                                .forward(25)
+//                                .turn(Math.toRadians(90))
+//                                .forward(80)
+//                                .turn(Math.toRadians(-90))
+//                                .forward(15)
+
+
+                    );
+
+            BlueBot1 = new DefaultBotBuilder(meepMeep) //LEFT PARK
+                    // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
+                    // Set bot colour: Blue Dark, Blue Light, Red Dark, Red Light
+                    .setColorScheme(new ColorSchemeBlueDark())
+                    .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 15)
+                    .followTrajectorySequence(drive ->
+                                    drive.trajectorySequenceBuilder(new Pose2d(-40.81, 62.78, Math.toRadians(-90)))
+                                            .splineToLinearHeading(new Pose2d(-19, 42.5,Math.toRadians(90)), Math.toRadians(-180))
+                                            .forward(10)
+                                            .waitSeconds(5)
+                                            .splineToSplineHeading(new Pose2d(0, 42.6, Math.toRadians(0)), Math.toRadians(0)) //ask lachie why it does a turn then does a rotation to forward
+                                            .forward(20)
+                                            .splineToSplineHeading(new Pose2d(41.0,-42.9, Math.toRadians(0)), Math.toRadians(90))
+                                            .forward(17)
+                                            .build()
+
+//                                .turn(Math.toRadians(0))
+//                                .forward(20)
+//                                .turn(Math.toRadians(90))
+//                                .forward(60)
+//                                .turn(Math.toRadians(90))
+//                                .forward(10)
+//                                .waitSeconds(5)
+//                                .turn(Math.toRadians(-180))
+//                                .forward(10)
+//                                .turn(Math.toRadians(90))
+//                                .forward(25)
+//                                .turn(Math.toRadians(-90))
+//                                .forward(80)
+//                                .turn(Math.toRadians(90))
+//                                .forward(15)
+//
+//                                .build()
+                    );
+
+
+            BlueBot2 = new DefaultBotBuilder(meepMeep) //RIGHT PARK
+                    // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
+                    // Set bot colour: Blue Dark, Blue Light, Red Dark, Red Light
+                    .setColorScheme(new ColorSchemeBlueDark())
+                    .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 15)
+                    .followTrajectorySequence(drive ->
+                            drive.trajectorySequenceBuilder(new Pose2d(-40.81, 62.78, Math.toRadians(-90)))
+                                    .splineToLinearHeading(new Pose2d(-19, 42.5,Math.toRadians(90)), Math.toRadians(-180))
+                                    .forward(10)
+                                    .waitSeconds(5)
+                                    .splineToSplineHeading(new Pose2d(0, 42.6, Math.toRadians(-180)), Math.toRadians(0)) //ask lachie why it does a turn then does a rotation to forward
+                                    .forward(20)
+                                    .splineToSplineHeading(new Pose2d(-41.0,-42.9, Math.toRadians(-180)), Math.toRadians(90))
+                                    .forward(17)
+                                    .build()
+
+                    );
+
+//                                .turn(Math.toRadians(0))
+//                                .forward(20)
+//                                .turn(Math.toRadians(90))
+//                                .forward(60)
+//                                .turn(Math.toRadians(90))
+//                                .forward(10)
+//                                .waitSeconds(5)
+//                                .turn(Math.toRadians(-180))
+//                                .forward(10)
+//                                .turn(Math.toRadians(-90))
+//                                .forward(60)
+//                                .turn(Math.toRadians(90))
+//                                .forward(80)
+//                                .turn(Math.toRadians(-90))
+//                                .forward(15)
+
+//                                .build()
+    }
+
+
+
+
 
         Image img = null;
         try { img = ImageIO.read(new File("MeepMeepTesting/src/resources/PostalPanic_Stage.png")); }

@@ -1,23 +1,24 @@
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.acmerobotics.roadrunner.geometry.Pose2d;
+import com.acmerobotics.roadrunner.trajectory.Trajectory;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
+import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
+import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
 import org.openftc.apriltag.AprilTagDetection;
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
 import org.openftc.easyopencv.OpenCvCameraRotation;
-import org.openftc.easyopencv.OpenCvInternalCamera;
 
 import java.util.ArrayList;
 
 @Autonomous
-public class ProfessionalGlazersAuton extends LinearOpMode
+public class ProfessionalGlazersAutonREDRIGHTPARK extends LinearOpMode
 {   
     //INTRODUCE VARIABLES HERE
 
@@ -59,6 +60,46 @@ public class ProfessionalGlazersAuton extends LinearOpMode
     @Override
     public void runOpMode()
     {
+        SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
+
+        TrajectorySequence idOne = drive.trajectorySequenceBuilder(new Pose2d(-40.81, -62.78, Math.toRadians(90.00)))
+
+                                        .splineToLinearHeading(new Pose2d(19, -42.5,Math.toRadians(-90)), Math.toRadians(-180))
+                                        .forward(10)
+                                        .waitSeconds(5)
+                                        .splineToSplineHeading(new Pose2d(0, -42.6, Math.toRadians(0)), Math.toRadians(0)) //ask lachie why it does a turn then does a rotation to forward
+                                        .forward(20)
+                                        .splineToSplineHeading(new Pose2d(41.0,42.9, Math.toRadians(0)), Math.toRadians(90))
+                                        .forward(17)
+                                        .build();
+
+
+
+        TrajectorySequence idTwo = drive.trajectorySequenceBuilder(new Pose2d(-40.81, -62.78, Math.toRadians(90.00)))
+
+                                        .splineToLinearHeading(new Pose2d(0, -42.5,Math.toRadians(-90)), Math.toRadians(-180))
+                                        .forward(10)
+                                        .waitSeconds(5)
+                                        .splineToSplineHeading(new Pose2d(0, -42.6, Math.toRadians(0)), Math.toRadians(0)) //ask lachie why it does a turn then does a rotation to forward
+                                        .forward(20)
+                                        .splineToSplineHeading(new Pose2d(41.0,42.9, Math.toRadians(0)), Math.toRadians(90))
+                                        .forward(17)
+                                        .build();
+
+
+        TrajectorySequence idThree = drive.trajectorySequenceBuilder(new Pose2d(-40.81, -62.78, Math.toRadians(90.00)))
+
+                                .splineToLinearHeading(new Pose2d(-19, -42.5,Math.toRadians(-90)), Math.toRadians(-180))
+                                .forward(10)
+                                .waitSeconds(5)
+                                .splineToSplineHeading(new Pose2d(0, -42.6, Math.toRadians(0)), Math.toRadians(0)) //ask lachie why it does a turn then does a rotation to forward
+                                .forward(20)
+                                .splineToSplineHeading(new Pose2d(41.0,42.9, Math.toRadians(0)), Math.toRadians(90))
+                                .forward(17)
+                                .build();
+
+
+
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         camera = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);
         aprilTagDetectionPipeline = new AprilTagDetectionPipeline(tagsize, fx, fy, cx, cy);
@@ -165,8 +206,6 @@ public class ProfessionalGlazersAuton extends LinearOpMode
 
 
 
-
-
         if(tagOfInterest != null)
         {
             telemetry.addLine("Tag snapshot:\n");
@@ -182,8 +221,9 @@ public class ProfessionalGlazersAuton extends LinearOpMode
 //        telemetry.addLine(runtime);
 
         //PUT AUTON CODE HERE (DRIVER PRESSED THE PLAY BUTTON!)
-        
-        
+
+        waitForStart();
+
         if(tagOfInterest == null){
             //This is where we put code for what the robot does when it does not see anything
             driveForward(0.5);
@@ -193,29 +233,19 @@ public class ProfessionalGlazersAuton extends LinearOpMode
             switch(tagOfInterest.id){
                 case 1:
                     //see tag 1, this is what the robot does
-                    driveForward(0.5);
-                     sleep(2000);
-
+                    drive.followTrajectorySequence(idOne);
                     break;
                 case 2:
                     //see tag 2, this is what the robot does
-                    driveBackward(0.4);
-                    sleep(2000);
+                    drive.followTrajectorySequence(idTwo);
 
                     break;
                 case 3:
-                    strafeLeft(0.5);
-                    sleep(2000);
+                    drive.followTrajectorySequence(idThree);
                     // see tag 3, this is what the robot does
 
                     break;
 		        case 4:
-                    strafeRight(0.5);
-                    sleep(2000);
-                    turnleft90deg(0.5);
-                    sleep(2000);
-
-
                     // see tag 4, this is what the robot does
                     
                     break;
