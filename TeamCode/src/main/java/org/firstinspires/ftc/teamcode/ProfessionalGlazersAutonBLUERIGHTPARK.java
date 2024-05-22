@@ -215,9 +215,10 @@ public class ProfessionalGlazersAutonBLUERIGHTPARK extends LinearOpMode
             telemetry.update();
         }
 
-//        telemetry.addLine(runtime);
+
 
         //PUT AUTON CODE HERE (DRIVER PRESSED THE PLAY BUTTON!)
+
 
         waitForStart();
 
@@ -243,7 +244,8 @@ public class ProfessionalGlazersAutonBLUERIGHTPARK extends LinearOpMode
 
                     break;
 		        case 4:
-                                       // see tag 4, this is what the robot does
+
+                    // see tag 4, this is what the robot does
                     
                     break;
             }

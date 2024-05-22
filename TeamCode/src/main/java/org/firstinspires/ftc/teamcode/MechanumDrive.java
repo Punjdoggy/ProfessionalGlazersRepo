@@ -69,7 +69,7 @@ public class MechanumDrive extends LinearOpMode {
         // Keep testing until ALL the wheels move the robot forward when you push the left joystick forward.
         leftFrontDrive.setDirection(DcMotor.Direction.FORWARD);
         leftBackDrive.setDirection(DcMotor.Direction.REVERSE);
-        rightFrontDrive.setDirection(DcMotor.Direction.FORWARD);
+        rightFrontDrive.setDirection(DcMotor.Direction.REVERSE);
         rightBackDrive.setDirection(DcMotor.Direction.REVERSE);
 
         // Wait for the game to start (driver presses PLAY)
