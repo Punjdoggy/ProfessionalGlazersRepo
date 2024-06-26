@@ -25,7 +25,7 @@ public class MeepMeepTesting {
     public static void main(String[] args) {
         MeepMeep meepMeep = new MeepMeep(900);
 
-    switch (Util.PREDEFINED_STATE) {
+    switch (Util. PREDEFINED_STATE) {
 
         case LEFT:
             System.out.println("LEFT");
