@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
+import android.annotation.SuppressLint;
+
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -218,9 +220,6 @@ public class ProfessionalGlazersAutonBLUELEFTPARK extends LinearOpMode
 
         if(tagOfInterest == null){
             //This is where we put code for what the robot does when it does not see anything
-            driveForward(0.5);
-            sleep(2000);
-
         }else{
             switch(tagOfInterest.id){
                 case 1:
@@ -247,6 +246,7 @@ public class ProfessionalGlazersAutonBLUELEFTPARK extends LinearOpMode
         
     }
 
+    @SuppressLint("DefaultLocale")
     void tagToTelemetry(AprilTagDetection detection)
     {
         telemetry.addLine(String.format("\nDetected tag ID=%d", detection.id));
@@ -257,58 +257,5 @@ public class ProfessionalGlazersAutonBLUELEFTPARK extends LinearOpMode
 //        telemetry.addLine(String.format("Rotation Pitch: %.2f degrees", Math.toDegrees(detection.pose.pitch)));
 //        telemetry.addLine(String.format("Rotation Roll: %.2f degrees", Math.toDegrees(detection.pose.roll)));
     }
-
-    void driveForward(double speed)
-    {
-    
-        leftFrontDrive.setPower(speed);
-        rightBackDrive.setPower(speed);
-        leftBackDrive.setPower(speed);
-        rightFrontDrive.setPower(speed);
-    }
-
-
-    void driveBackward(double speed)
-    {
-        leftFrontDrive.setPower(-speed);
-        rightBackDrive.setPower(-speed);
-        leftBackDrive.setPower(-speed);
-        rightFrontDrive.setPower(-speed);
-    }
-
-    void strafeRight(double speed) {
-
-        leftFrontDrive.setPower(-speed);
-        rightBackDrive.setPower(-speed);
-        leftBackDrive.setPower(speed);
-        rightFrontDrive.setPower(speed);
-
-    }
-
-    void strafeLeft(double speed) {
-
-        leftFrontDrive.setPower(speed);
-        rightBackDrive.setPower(speed);
-        leftBackDrive.setPower(-speed);
-        rightFrontDrive.setPower(-speed);
-
-    }
-
-    void turnleft90deg(double speed){
-        leftFrontDrive.setPower(speed);
-        rightBackDrive.setPower(-speed);
-        leftBackDrive.setPower(speed);
-        rightFrontDrive.setPower(-speed);
-    }
-
-    void turnright90deg(double speed){
-        leftFrontDrive.setPower(-speed);
-        rightBackDrive.setPower(speed);
-        leftBackDrive.setPower(-speed);
-        rightFrontDrive.setPower(speed);
-    }
-
-
-
 
 }
