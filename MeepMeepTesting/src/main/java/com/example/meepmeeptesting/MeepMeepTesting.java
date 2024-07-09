@@ -27,7 +27,7 @@ public class MeepMeepTesting {
 
     switch (Util. PREDEFINED_STATE) {
 
-        case LEFT:
+        case RIGHT:
             System.out.println("LEFT");
              RedBot1 = new DefaultBotBuilder(meepMeep) //LEFT PARK
                     // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
@@ -318,7 +318,7 @@ public class MeepMeepTesting {
 
 //                                .build()
             break;
-        case RIGHT:
+        case LEFT:
             System.out.println("RIGHT");
             RedBot1 = new DefaultBotBuilder(meepMeep) //LEFT PARK
                     // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
