@@ -1,59 +1,48 @@
 package org.firstinspires.ftc.teamcode.util;
 
 public class Vector2D {
-    public double getM() {
-        return m;
+
+    private double i;
+    private double j;
+
+
+
+    public Vector2D(double na, double nb, boolean isCart) {
+        i = na;
+        j = nb;
+        if (isCart == false) {
+             i = na * Math.cos(Math.toRadians(nb));
+             j = na * Math.sin(Math.toRadians(nb));
+        }
     }
 
-    public double getD() {
+    //getter for I, J
+
+    public double getM() {
+        double m = Math.sqrt(Math.pow(j,2) + Math.pow(i,2));
+        return m; // <-- calculate M
+    }
+
+    public double getD(){
+        double d = Math.toDegrees(Math.atan2(j, i));
         return d;
     }
-
-    public void setM(double m) {
-        this.m = m;
-    }
-
-    public void setD(double d) {
-        this.d = d;
-    }
-
-    private double m;
-    private double d;
-    public Vector2D(double nm, double nd) {
-        m = nm;
-        d = nd;
-    }
-
-    public Vector2D mul(Vector2D vec2) {
-        return new Vector2D(m * vec2.getM(), d * vec2.getD());
-    }
+    //^ same as above for D
 
     public Vector2D rot(double rot) {
-        return new Vector2D(m, (d + rot)%360);
+        return new Vector2D(getM(), (getD() + rot)%360, true);
     }
 
-    public Vector2D vecrot (Vector2D vec2) {
-        return new Vector2D(m,(d + vec2.getD())%360);
+    public Vector2D mul(Vector2D vector1){
+        return new Vector2D(i * vector1.i, j * vector1.j, true);
     }
+
+    public Vector2D vecrot(Vector2D vector1){
+        return new Vector2D(getM(),(vector1.getD() + getD())%360, false);
+    }
+
+    Vector2D vector1 = new Vector2D(1,2,true);
+    Vector2D vector2 = new Vector2D(2,2,false);
 }
 
-
-Vector2D vec1 = new Vector2D(1, 2);
-
-Vector2D vec2 = new Vector2D(1, 2);
-
-vec1.getD(); // == 2
-vec1.setD(1);
-vec1.getD(); // == 1
-
-
-vec2.mul(vec1);
-vec1.mul(vec2);
-
-vec1.mul(vec1) == vec1 * vec1
-Vector2D vec1 = new Vector2D(1, 2);
-
-Vector2D vec2 = new Vector2D(2, 3);
-
-vec1.mul(vec1) == vec1 * vec2 =
-new Vector2D(vec1.getM() * vec2.getM(), vec1.getD() * vec2.getD());
+//must accept BOTH cartesian and non cartesian, and store it as cartesian
