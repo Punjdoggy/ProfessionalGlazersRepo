@@ -28,7 +28,7 @@ public class MeepMeepTesting {
     switch (Util. PREDEFINED_STATE) {
 
         case RIGHT:
-            System.out.println("LEFT");
+            System.out.println("RIGHT");
              RedBot1 = new DefaultBotBuilder(meepMeep) //LEFT PARK
                     // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
                     // Set bot colour: Blue Dark, Blue Light, Red Dark, Red Light
@@ -319,7 +319,7 @@ public class MeepMeepTesting {
 //                                .build()
             break;
         case LEFT:
-            System.out.println("RIGHT");
+            System.out.println("LEFT");
             RedBot1 = new DefaultBotBuilder(meepMeep) //LEFT PARK
                     // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
                     // Set bot colour: Blue Dark, Blue Light, Red Dark, Red Light
