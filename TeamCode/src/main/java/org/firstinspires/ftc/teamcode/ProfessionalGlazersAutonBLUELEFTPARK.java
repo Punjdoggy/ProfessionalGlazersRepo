@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
 import android.annotation.SuppressLint;
+import android.transition.Slide;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
@@ -11,6 +12,8 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
+import org.firstinspires.ftc.teamcode.util.MotorController;
+import org.firstinspires.ftc.teamcode.util.SliderController;
 import org.openftc.apriltag.AprilTagDetection;
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
@@ -66,7 +69,10 @@ public class ProfessionalGlazersAutonBLUELEFTPARK extends LinearOpMode
         TrajectorySequence idOne = drive.trajectorySequenceBuilder(new Pose2d(-40.81, 62.78, Math.toRadians(-90)))
                                         .splineToLinearHeading(new Pose2d(19, 42.5,Math.toRadians(90)), Math.toRadians(-180))
                                         .forward(10)
-                                        .waitSeconds(5)
+//                                        .waitSeconds(5)
+                .addDisplacementMarker(() -> {
+                    SliderController.setTarget(212);
+                })
                                         .splineToSplineHeading(new Pose2d(0, 42.6, Math.toRadians(0)), Math.toRadians(0)) //ask lachie why it does a turn then does a rotation to forward
                                         .forward(20)
                                         .splineToSplineHeading(new Pose2d(41.0,-42.9, Math.toRadians(0)), Math.toRadians(90))
@@ -77,7 +83,10 @@ public class ProfessionalGlazersAutonBLUELEFTPARK extends LinearOpMode
         TrajectorySequence idTwo = drive.trajectorySequenceBuilder(new Pose2d(-40.81, 62.78, Math.toRadians(-90)))
                                         .splineToLinearHeading(new Pose2d(0, 42.5,Math.toRadians(90)), Math.toRadians(-180))
                                         .forward(10)
-                                        .waitSeconds(5)
+//                                        .waitSeconds(5)
+                .addDisplacementMarker(() -> {
+                    SliderController.setTarget(212);
+                })
                                         .splineToSplineHeading(new Pose2d(0, 42.6, Math.toRadians(0)), Math.toRadians(0)) //ask lachie why it does a turn then does a rotation to forward
                                         .forward(20)
                                         .splineToSplineHeading(new Pose2d(41.0,-42.9, Math.toRadians(0)), Math.toRadians(90))
@@ -87,7 +96,10 @@ public class ProfessionalGlazersAutonBLUELEFTPARK extends LinearOpMode
         TrajectorySequence idThree = drive.trajectorySequenceBuilder(new Pose2d(-40.81, 62.78, Math.toRadians(-90)))
                                 .splineToLinearHeading(new Pose2d(-19, 42.5,Math.toRadians(90)), Math.toRadians(-180))
                                 .forward(10)
-                                .waitSeconds(5)
+//                                .waitSeconds(5)
+                .addDisplacementMarker(() -> {
+                    SliderController.setTarget(212);
+                })
                                 .splineToSplineHeading(new Pose2d(0, 42.6, Math.toRadians(0)), Math.toRadians(0)) //ask lachie why it does a turn then does a rotation to forward
                                 .forward(20)
                                 .splineToSplineHeading(new Pose2d(41.0,-42.9, Math.toRadians(0)), Math.toRadians(90))
@@ -118,22 +130,19 @@ public class ProfessionalGlazersAutonBLUELEFTPARK extends LinearOpMode
 
 
         //HARDWARE MAPPING HERE etc.
-	
-        leftFrontDrive = hardwareMap.get(DcMotor.class, "2");
-        leftBackDrive = hardwareMap.get(DcMotor.class, "3");
-        rightBackDrive = hardwareMap.get(DcMotor.class, "0");
-        rightFrontDrive = hardwareMap.get(DcMotor.class, "1");
 
 
-        leftFrontDrive.setDirection(DcMotor.Direction.FORWARD);
-        leftBackDrive.setDirection(DcMotor.Direction.REVERSE);
-        rightFrontDrive.setDirection(DcMotor.Direction.FORWARD);
-        rightBackDrive.setDirection(DcMotor.Direction.REVERSE);
+        MotorController.Initmotor(
+                hardwareMap.get(DcMotor.class, "3"),
+                hardwareMap.get(DcMotor.class, "0"),
+                hardwareMap.get(DcMotor.class, "2"),
+                hardwareMap.get(DcMotor.class, "1")
+        );
 
-	    leftFrontDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        leftBackDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        rightBackDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        rightFrontDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        SliderController.initialiseSLide(
+                hardwareMap.get(DcMotor.class, "slider")
+        );
+
 
         /*
          * The INIT-loop:
@@ -253,6 +262,7 @@ public class ProfessionalGlazersAutonBLUELEFTPARK extends LinearOpMode
         telemetry.addLine(String.format("Translation X: %.2f feet", detection.pose.x*FEET_PER_METER));
         telemetry.addLine(String.format("Translation Y: %.2f feet", detection.pose.y*FEET_PER_METER));
         telemetry.addLine(String.format("Translation Z: %.2f feet", detection.pose.z*FEET_PER_METER));
+        telemetry.addData("Status", "Run Time: " + runtime.toString());
 //        telemetry.addLine(String.format("Rotation Yaw: %.2f degrees", Math.toDegrees(detection.pose.yaw)));
 //        telemetry.addLine(String.format("Rotation Pitch: %.2f degrees", Math.toDegrees(detection.pose.pitch)));
 //        telemetry.addLine(String.format("Rotation Roll: %.2f degrees", Math.toDegrees(detection.pose.roll)));

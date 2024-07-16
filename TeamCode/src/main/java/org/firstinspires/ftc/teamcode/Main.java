@@ -1,13 +1,12 @@
 package  org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.util.MotorController;
+import org.firstinspires.ftc.teamcode.util.SliderController;
 
 /*
  * This file contains an example of a Linear "OpMode".
@@ -40,7 +39,7 @@ import org.firstinspires.ftc.teamcode.util.MotorController;
 @TeleOp(name="Mechanum Drive", group="Linear OpMode")
 //@Disabled
 
-public class MechanumDrive extends LinearOpMode {
+public class Main extends LinearOpMode {
 
     // Declare OpMode members for each of the 4 motors and runtime if needed.
     private ElapsedTime runtime = new ElapsedTime();
@@ -61,15 +60,22 @@ public class MechanumDrive extends LinearOpMode {
                 hardwareMap.get(DcMotor.class, "2"),
                 hardwareMap.get(DcMotor.class, "1")
         );
+
+        SliderController.initialiseSLide(
+                hardwareMap.get(DcMotor.class, "slider")
+        );
+
+
         telemetry.addData("Status", "Initialized");
         telemetry.update();
-
         waitForStart();
         runtime.reset();
 
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
             MotorController.drivemotors(-gamepad1.left_stick_y, gamepad1.left_stick_x, gamepad1.right_stick_x);
+            SliderController.setTarget(80);
+            SliderController.updateSlide();
 
             // Show the elapsed game time and wheel power.
             telemetry.addData("Status", "Run Time: " + runtime.toString());

@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.util;
 
+import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 public class MotorController {
@@ -14,11 +15,15 @@ public class MotorController {
         MotorController.LeftFrontDrive = LeftFrontDrive;
         MotorController.RightFrontDrive = RightFrontDrive;
 
-        MotorController.LeftBackDrive.setDirection(DcMotor.Direction.FORWARD);
+        MotorController.LeftBackDrive.setDirection(DcMotor.Direction.REVERSE);
         MotorController.RightBackDrive.setDirection(DcMotor.Direction.FORWARD);
         MotorController.LeftFrontDrive.setDirection(DcMotor.Direction.FORWARD);
-        MotorController.RightFrontDrive.setDirection(DcMotor.Direction.FORWARD);
+        MotorController.RightFrontDrive.setDirection(DcMotor.Direction.REVERSE);
 
+        MotorController.LeftFrontDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        MotorController.LeftBackDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        MotorController.RightBackDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        MotorController.RightFrontDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
 
     public static void drivemotors(double axial, double lateral, double yaw) {

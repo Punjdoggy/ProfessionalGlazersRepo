@@ -6,8 +6,6 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 public class SliderController {
-
-
     private static PIDController pid = new PIDController(0.62,0.01,0.03);
 
     private static DcMotor slidemotor;
@@ -35,6 +33,7 @@ public class SliderController {
         slidemotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         slidemotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     }
+
 
 
 
