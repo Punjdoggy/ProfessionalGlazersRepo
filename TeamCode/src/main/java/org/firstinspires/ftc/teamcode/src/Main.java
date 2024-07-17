@@ -11,7 +11,7 @@ import org.firstinspires.ftc.teamcode.lib.SliderController;
 import org.firstinspires.ftc.teamcode.lib.ServoController;
 
 
-@TeleOp(name="Main", group="Linear OpMode")
+@TeleOp(name="MainTest", group="Linear OpMode")
 //@Disabled
 public class Main extends LinearOpMode {
 
@@ -28,33 +28,32 @@ public class Main extends LinearOpMode {
                 hardwareMap.get(DcMotor.class, "1")
         );
 
-        SliderController.initialiseSLide(
-                hardwareMap.get(DcMotor.class, "slider")
-        );
-
-        ServoController.initservo(
-                hardwareMap.get(CRServo.class,"servo"));
-
+//        SliderController.initialiseSLide(
+//                hardwareMap.get(DcMotor.class, "slider")
+//        );
+//
+//        ServoController.initservo(
+//                hardwareMap.get(CRServo.class,"servo"));
 
         telemetry.addData("Status", "Initialized");
         telemetry.update();
         waitForStart();
         runtime.reset();
 
-        SliderController.resetEncoder();
+//        SliderController.resetEncoder();
 
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
             MotorController.drivemotors(-gamepad1.left_stick_y, gamepad1.left_stick_x, gamepad1.right_stick_x);
 
-            ServoController.runServo(gamepad1.left_bumper, gamepad1.right_bumper);
-
-            if (gamepad1.a) {
-                SliderController.setTarget(SliderController.slidermaxheight); //arbitrary highest
-            } else {
-                SliderController.setTarget(SliderController.sliderminheight); //arbitrary lowest
-            }
-            SliderController.updateSlide();
+//            ServoController.runServo(gamepad1.left_bumper, gamepad1.right_bumper);
+//
+//            if (gamepad1.a) {
+//                SliderController.setTarget(SliderController.slidermaxheight); //arbitrary highest
+//            } else {
+//                SliderController.setTarget(SliderController.sliderminheight); //arbitrary lowest
+//            }
+//            SliderController.updateSlide();
 
             // Show the elapsed game time and wheel power.
             telemetry.addData("Status", "Run Time: " + runtime.toString());
