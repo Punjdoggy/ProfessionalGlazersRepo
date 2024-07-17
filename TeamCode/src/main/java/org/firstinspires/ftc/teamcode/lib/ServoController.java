@@ -1,25 +1,24 @@
 package org.firstinspires.ftc.teamcode.lib;
 
-import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.hardware.CRServo;
 
 public class ServoController {
 
-    private static Servo armservo;
+    private static CRServo armservo;
 
-    public static void initservo(Servo servo) {
+    public static void initservo(CRServo servo) {
         armservo = servo;
-        ServoController.armservo.setDirection(Servo.Direction.FORWARD);
     }
 
-    public static void openservo(boolean gamepad_left_bumper){
-        if (gamepad_left_bumper) {
-            ServoController.armservo.;
-        }else{
-
+    public static void runServo(boolean leftBumper, boolean rightBumper){
+        if (leftBumper) {
+            armservo.setPower(1);
+        }else if (rightBumper){
+            armservo.setPower(-1);
+        } else {
+            armservo.setPower(0);
         }
     }
-
-
 
 
 }
