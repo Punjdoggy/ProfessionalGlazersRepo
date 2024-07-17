@@ -11,9 +11,8 @@ import org.firstinspires.ftc.teamcode.lib.SliderController;
 import org.firstinspires.ftc.teamcode.lib.ServoController;
 
 
-@TeleOp(name="Mechanum Drive", group="Linear OpMode")
+@TeleOp(name="Main", group="Linear OpMode")
 //@Disabled
-
 public class Main extends LinearOpMode {
 
     private ElapsedTime runtime = new ElapsedTime();
