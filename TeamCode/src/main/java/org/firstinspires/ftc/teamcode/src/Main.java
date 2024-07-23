@@ -33,7 +33,10 @@ public class Main extends LinearOpMode {
 //        );
 //
 //        ServoController.initservo(
-//                hardwareMap.get(CRServo.class,"servo"));
+//                hardwareMap.get(CRServo.class,"servo1")
+//                hardwareMap.get(CRServo.class,"servo2")
+//                );
+
 
         telemetry.addData("Status", "Initialized");
         telemetry.update();
@@ -44,7 +47,7 @@ public class Main extends LinearOpMode {
 
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
-            MotorController.drivemotors(-gamepad1.left_stick_y, gamepad1.left_stick_x, gamepad1.right_stick_x);
+            MotorController.drivemotors(gamepad1.left_stick_y, gamepad1.left_stick_x, gamepad1.right_stick_x);
 
 //            ServoController.runServo(gamepad1.left_bumper, gamepad1.right_bumper);
 //

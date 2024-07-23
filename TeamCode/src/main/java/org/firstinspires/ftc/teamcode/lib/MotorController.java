@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.lib;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 public class MotorController {
     private static DcMotor LeftBackDrive;
@@ -14,9 +15,9 @@ public class MotorController {
         MotorController.LeftFrontDrive = LeftFrontDrive;
         MotorController.RightFrontDrive = RightFrontDrive;
 
-        MotorController.LeftBackDrive.setDirection(DcMotor.Direction.REVERSE);
+        MotorController.LeftBackDrive.setDirection(DcMotor.Direction.FORWARD);
         MotorController.RightBackDrive.setDirection(DcMotor.Direction.FORWARD);
-        MotorController.LeftFrontDrive.setDirection(DcMotor.Direction.FORWARD);
+        MotorController.LeftFrontDrive.setDirection(DcMotor.Direction.REVERSE);
         MotorController.RightFrontDrive.setDirection(DcMotor.Direction.REVERSE);
 
         MotorController.LeftFrontDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
