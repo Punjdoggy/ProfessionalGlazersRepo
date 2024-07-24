@@ -27,10 +27,10 @@ public class ProfessionalGlazersAutonBLUELEFTPARK extends LinearOpMode
     //INTRODUCE VARIABLES HERE
 
     private ElapsedTime runtime = new ElapsedTime();
-    private DcMotor leftFrontDrive = null;
-    private DcMotor leftBackDrive = null;
-    private DcMotor rightFrontDrive = null;
-    private DcMotor rightBackDrive = null;
+//    private DcMotor leftFrontDrive = null;
+//    private DcMotor leftBackDrive = null;
+//    private DcMotor rightFrontDrive = null;
+//    private DcMotor rightBackDrive = null;
 
 
 
@@ -140,9 +140,9 @@ public class ProfessionalGlazersAutonBLUELEFTPARK extends LinearOpMode
                 hardwareMap.get(DcMotor.class, "1")
         );
 
-        SliderController.initialiseSLide(
-                hardwareMap.get(DcMotor.class, "slider")
-        );
+//        SliderController.initialiseSLide(
+//                hardwareMap.get(DcMotor.class, "slider")
+//        );
 
 
         /*
@@ -230,6 +230,7 @@ public class ProfessionalGlazersAutonBLUELEFTPARK extends LinearOpMode
 
         if(tagOfInterest == null){
             //This is where we put code for what the robot does when it does not see anything
+            drive.followTrajectorySequence(idOne);
         }else{
             switch(tagOfInterest.id){
                 case 1:

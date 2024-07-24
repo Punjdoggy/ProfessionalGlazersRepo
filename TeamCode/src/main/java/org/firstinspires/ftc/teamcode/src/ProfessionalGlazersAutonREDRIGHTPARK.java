@@ -66,9 +66,9 @@ public class ProfessionalGlazersAutonREDRIGHTPARK extends LinearOpMode
                                         .splineToLinearHeading(new Pose2d(19, -42.5,Math.toRadians(-90)), Math.toRadians(-180))
                                         .forward(10)
 //                                        .waitSeconds(5)
-                .addDisplacementMarker(() -> {
-                    SliderController.setTarget(SliderController.slidermaxheight);
-                })
+//                .addDisplacementMarker(() -> {
+//                    SliderController.setTarget(SliderController.slidermaxheight);
+//                })
                                         .splineToSplineHeading(new Pose2d(0, -42.6, Math.toRadians(0)), Math.toRadians(0)) //ask lachie why it does a turn then does a rotation to forward
                                         .forward(20)
                                         .splineToSplineHeading(new Pose2d(41.0,42.9, Math.toRadians(0)), Math.toRadians(90))
@@ -82,9 +82,9 @@ public class ProfessionalGlazersAutonREDRIGHTPARK extends LinearOpMode
                                         .splineToLinearHeading(new Pose2d(0, -42.5,Math.toRadians(-90)), Math.toRadians(-180))
                                         .forward(10)
 //                                        .waitSeconds(5)
-                .addDisplacementMarker(() -> {
-                    SliderController.setTarget(SliderController.slidermaxheight);
-                })
+//                .addDisplacementMarker(() -> {
+//                    SliderController.setTarget(SliderController.slidermaxheight);
+//                })
                                         .splineToSplineHeading(new Pose2d(0, -42.6, Math.toRadians(0)), Math.toRadians(0)) //ask lachie why it does a turn then does a rotation to forward
                                         .forward(20)
                                         .splineToSplineHeading(new Pose2d(41.0,42.9, Math.toRadians(0)), Math.toRadians(90))
@@ -97,9 +97,9 @@ public class ProfessionalGlazersAutonREDRIGHTPARK extends LinearOpMode
                                 .splineToLinearHeading(new Pose2d(-19, -42.5,Math.toRadians(-90)), Math.toRadians(-180))
                                 .forward(10)
 //                                .waitSeconds(5)
-                .addDisplacementMarker(() -> {
-                    SliderController.setTarget(SliderController.slidermaxheight);
-                })
+//                .addDisplacementMarker(() -> {
+//                    SliderController.setTarget(SliderController.slidermaxheight);
+//                })
                                 .splineToSplineHeading(new Pose2d(0, -42.6, Math.toRadians(0)), Math.toRadians(0)) //ask lachie why it does a turn then does a rotation to forward
                                 .forward(20)
                                 .splineToSplineHeading(new Pose2d(41.0,42.9, Math.toRadians(0)), Math.toRadians(90))
@@ -140,9 +140,9 @@ public class ProfessionalGlazersAutonREDRIGHTPARK extends LinearOpMode
                 hardwareMap.get(DcMotor.class, "1")
         );
 
-        SliderController.initialiseSLide(
-                hardwareMap.get(DcMotor.class, "slider")
-        );
+//        SliderController.initialiseSLide(
+//                hardwareMap.get(DcMotor.class, "slider")
+//        );
 
         /*
          * The INIT-loop:
@@ -229,7 +229,7 @@ public class ProfessionalGlazersAutonREDRIGHTPARK extends LinearOpMode
 
         if(tagOfInterest == null){
             //This is where we put code for what the robot does when it does not see anything)
-            sleep(2000);
+            drive.followTrajectorySequence(idOne);
 
         }else{
             switch(tagOfInterest.id){

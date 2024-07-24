@@ -25,10 +25,10 @@ public class ProfessionalGlazersAutonREDLEFTPARK extends LinearOpMode
     //INTRODUCE VARIABLES HERE
 
     private ElapsedTime runtime = new ElapsedTime();
-    private DcMotor leftFrontDrive = null;
-    private DcMotor leftBackDrive = null;
-    private DcMotor rightFrontDrive = null;
-    private DcMotor rightBackDrive = null;
+//    private DcMotor leftFrontDrive = null;
+//    private DcMotor leftBackDrive = null;
+//    private DcMotor rightFrontDrive = null;
+//    private DcMotor rightBackDrive = null;
 
 
 
@@ -68,9 +68,9 @@ public class ProfessionalGlazersAutonREDLEFTPARK extends LinearOpMode
                                         .splineToLinearHeading(new Pose2d(19, -42.5,Math.toRadians(-90)), Math.toRadians(-180))
                                         .forward(10)
 //                                        .waitSeconds(5)
-                .addDisplacementMarker(() -> {
-                    SliderController.setTarget(SliderController.slidermaxheight);
-                })
+//                .addDisplacementMarker(() -> {
+//                    SliderController.setTarget(SliderController.slidermaxheight);
+//                })
                                         .splineToSplineHeading(new Pose2d(0, -42.6, Math.toRadians(-180)), Math.toRadians(0))
                                         .forward(20)
                                         .splineToSplineHeading(new Pose2d(-41.0,42.9, Math.toRadians(180)), Math.toRadians(90))
@@ -81,9 +81,9 @@ public class ProfessionalGlazersAutonREDLEFTPARK extends LinearOpMode
                                         .splineToLinearHeading(new Pose2d(0, -42.5,Math.toRadians(-90)), Math.toRadians(-180))
                                         .forward(10)
 //                                        .waitSeconds(5)
-                .addDisplacementMarker(() -> {
-                    SliderController.setTarget(SliderController.slidermaxheight);
-                })
+//                .addDisplacementMarker(() -> {
+//                    SliderController.setTarget(SliderController.slidermaxheight);
+//                })
                                         .splineToSplineHeading(new Pose2d(0, -42.6, Math.toRadians(-180)), Math.toRadians(0)) //ask lachie why it does a turn then does a rotation to forward
                                         .forward(20)
                                         .splineToSplineHeading(new Pose2d(-41.0,42.9, Math.toRadians(180)), Math.toRadians(90))
@@ -94,9 +94,9 @@ public class ProfessionalGlazersAutonREDLEFTPARK extends LinearOpMode
                                 .splineToLinearHeading(new Pose2d(-19, -42.5,Math.toRadians(-90)), Math.toRadians(-180))
                                 .forward(10)
 //                                .waitSeconds(5)
-                .addDisplacementMarker(() -> {
-                    SliderController.setTarget(SliderController.slidermaxheight);
-                })
+//                .addDisplacementMarker(() -> {
+//                    SliderController.setTarget(SliderController.slidermaxheight);
+//                })
                                 .splineToSplineHeading(new Pose2d(0, -42.6, Math.toRadians(-180)), Math.toRadians(0)) //ask lachie why it does a turn then does a rotation to forward
                                 .forward(20)
                                 .splineToSplineHeading(new Pose2d(-41.0,42.9, Math.toRadians(180)), Math.toRadians(90))
@@ -135,9 +135,9 @@ public class ProfessionalGlazersAutonREDLEFTPARK extends LinearOpMode
                 hardwareMap.get(DcMotor.class, "1")
         );
 
-        SliderController.initialiseSLide(
-                hardwareMap.get(DcMotor.class, "slider")
-        );
+//        SliderController.initialiseSLide(
+//                hardwareMap.get(DcMotor.class, "slider")
+//        );
 
         /*
          * The INIT-loop:
@@ -224,7 +224,7 @@ public class ProfessionalGlazersAutonREDLEFTPARK extends LinearOpMode
 
         if(tagOfInterest == null){
             //This is where we put code for what the robot does when it does not see anything
-
+            drive.followTrajectorySequence(idOne);
         }else{
             switch(tagOfInterest.id){
                 case 1:
