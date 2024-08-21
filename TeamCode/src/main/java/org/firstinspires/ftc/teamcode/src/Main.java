@@ -3,6 +3,8 @@ package org.firstinspires.ftc.teamcode.src;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.CRServo;
+import com.qualcomm.robotcore.hardware.Servo;
+
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
@@ -32,10 +34,11 @@ public class Main extends LinearOpMode {
 //                hardwareMap.get(DcMotor.class, "slider")
 //        );
 //
-//        ServoController.initservo(
-//                hardwareMap.get(CRServo.class,"servo1")
-//                hardwareMap.get(CRServo.class,"servo2")
-//                );
+        ServoController.initservos(
+                hardwareMap.get(CRServo.class,"servo1"),
+                hardwareMap.get(CRServo.class,"servo2"),
+                hardwareMap.get(Servo.class, "servo3")
+                );
 
 
         telemetry.addData("Status", "Initialized");
@@ -49,17 +52,12 @@ public class Main extends LinearOpMode {
         while (opModeIsActive()) {
             MotorController.drivemotors(gamepad1.left_stick_y, gamepad1.left_stick_x, gamepad1.right_stick_x);
 
-//            ServoController.runServo(gamepad1.left_bumper, gamepad1.right_bumper);
-//
-//            if (gamepad1.a) {
-//                SliderController.setTarget(SliderController.slidermaxheight); //arbitrary highest
-//            } else {
-//                SliderController.setTarget(SliderController.sliderminheight); //arbitrary lowest
-//            }
-//            SliderController.updateSlide();
+            ServoController.runarmservo(gamepad1.a);
+            ServoController.runintakeServo(gamepad1.left_bumper, gamepad1.right_bumper);
 
-            // Show the elapsed game time and wheel power.
+             // Show the elapsed game time and wheel power.
             telemetry.addData("Status", "Run Time: " + runtime.toString());
+            telemetry.addLine("Apressed:" + ServoController.apressed);
             telemetry.update();
         }
     }}
