@@ -1,25 +1,35 @@
 package org.firstinspires.ftc.teamcode.lib;
 
+import androidx.core.view.PointerIconCompat;
+
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
+
+import com.arcrobotics.ftclib.controller.PIDController;
+
 
 public class ServoController {
 
     private static CRServo intakeservo1;
     private static CRServo intakeservo2;
     public static Servo armservo;
-    public static boolean apressed;
+    private static CRServo testservo;
+
+    public static double lastpowerrange =0;
+    public static boolean backpower = false;
 
 
 
-    public static void initservos(CRServo servo1, CRServo servo2, Servo servo3) {
+    public static void initservos(CRServo servo1, CRServo servo2, Servo servo3, CRServo testerservo) {
         intakeservo1 = servo1;
         intakeservo2 = servo2;
         armservo = servo3;
+        testservo = testerservo;
         intakeservo1.setDirection(CRServo.Direction.FORWARD);
         intakeservo2.setDirection(CRServo.Direction.FORWARD);
         armservo.setDirection(Servo.Direction.REVERSE);
+        testservo.setDirection(CRServo.Direction.FORWARD);
     }
 
     public static void runintakeServo(boolean leftBumper, boolean rightBumper){
@@ -35,37 +45,37 @@ public class ServoController {
         intakeservo2.setPower(power);
     }
 
-    public static void runarmservo(boolean a) {
-        double power = 0;
-        apressed = false;
-        int debounce = 0;
-
-
-        //if a and not pressed, pressed = true and power ++
-        //if not a and pressed, pressed = false
-        if (a && !apressed){
-            apressed = true;
-            power += 0.3;
+    public static void runtestservo(boolean dpadleft){
+        double power =0;
+        if(dpadleft){
+            power = 1;
         }
-        if(a && apressed == true){
-            apressed = false;
-            power =0;
-        }
-//        if(a){
-//         apressed = true;
-//         debounce +=1;
-//        }
-//        if (apressed && debounce >= 1){
-//            debounce = 0;
-//        }
-//
-//        if (apressed && debounce == 1){
-//            power += 0.3;
-//        }else if (debounce == 0) {
-//            power =0;
-//        }
+        testservo.setPower(power);
+    }
 
-        armservo.setPosition(power);
+    public static void runarmservo(boolean a, boolean b) {
+        boolean power = false;
+
+
+        if (a){
+            power = true;
+            lastpowerrange += 0.001;
+        }
+
+
+        if (lastpowerrange >= 0.9 && b){
+            power = false;
+            backpower= true;
+            lastpowerrange -= 0.001;
+        }
+
+        if (backpower && b){
+            lastpowerrange = 0.883; 
+        }
+
+
+
+        armservo.setPosition(lastpowerrange);
 
 
     }
