@@ -54,13 +54,15 @@ public class Main extends LinearOpMode {
         while (opModeIsActive()) {
             MotorController.drivemotors(gamepad1.left_stick_y, gamepad1.left_stick_x, gamepad1.right_stick_x);
 
-            ServoController.runarmservo(gamepad1.a, gamepad1.b);
-            ServoController.runtestservo(gamepad1.dpad_left);
+            ServoController.runarmservo(gamepad1.a, gamepad1.b, gamepad1.dpad_left, gamepad1.dpad_right);
             ServoController.runintakeServo(gamepad1.left_bumper, gamepad1.right_bumper);
 
              // Show the elapsed game time and wheel power.
             telemetry.addData("Status", "Run Time: " + runtime.toString());
             telemetry.addLine("LastPowerRangeServo :" + ServoController.lastpowerrange);
+            telemetry.addLine("Gamepad Left Stick Y (Axial):" + gamepad1.left_stick_y);
+            telemetry.addLine("Gamepad Left Stick X (Laterial):" + gamepad1.left_stick_x);
+            telemetry.addLine("Gamepad Right Stick X (Yaw):" + gamepad1.right_stick_x);
             telemetry.update();
         }
     }}

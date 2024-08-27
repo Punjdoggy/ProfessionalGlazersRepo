@@ -45,23 +45,18 @@ public class ServoController {
         intakeservo2.setPower(power);
     }
 
-    public static void runtestservo(boolean dpadleft){
-        double power =0;
-        if(dpadleft){
-            power = 1;
-        }
-        testservo.setPower(power);
-    }
 
-    public static void runarmservo(boolean a, boolean b) {
+    public static void runarmservo(boolean a, boolean b, boolean dpadleft, boolean dpadright) {
         boolean power = false;
 
 
         if (a){
             power = true;
             lastpowerrange += 0.001;
+            if(lastpowerrange > 0.9){
+                lastpowerrange = 0.9;
+            }
         }
-
 
         if (lastpowerrange >= 0.9 && b){
             power = false;
@@ -69,8 +64,12 @@ public class ServoController {
             lastpowerrange -= 0.001;
         }
 
-        if (backpower && b){
+        if (power && dpadright){
             lastpowerrange = 0.883; 
+        }
+
+        if(backpower && dpadleft){
+            lastpowerrange = 0.01;
         }
 
 
