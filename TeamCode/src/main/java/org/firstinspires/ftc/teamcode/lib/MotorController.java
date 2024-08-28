@@ -15,10 +15,10 @@ public class MotorController {
         MotorController.LeftFrontDrive = LeftFrontDrive;
         MotorController.RightFrontDrive = RightFrontDrive;
 
-        MotorController.LeftBackDrive.setDirection(DcMotor.Direction.FORWARD);
-        MotorController.RightBackDrive.setDirection(DcMotor.Direction.FORWARD);
-        MotorController.LeftFrontDrive.setDirection(DcMotor.Direction.REVERSE);
-        MotorController.RightFrontDrive.setDirection(DcMotor.Direction.REVERSE);
+        MotorController.LeftBackDrive.setDirection(DcMotor.Direction.REVERSE);
+        MotorController.RightBackDrive.setDirection(DcMotor.Direction.REVERSE);
+        MotorController.LeftFrontDrive.setDirection(DcMotor.Direction.FORWARD);
+        MotorController.RightFrontDrive.setDirection(DcMotor.Direction.FORWARD);
 
         MotorController.LeftFrontDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         MotorController.LeftBackDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -42,12 +42,12 @@ public class MotorController {
         MotorController.RightFrontDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
 
-    public static void drivemotors(double axial, double lateral, double yaw) {
+    public static void driveMotors(double y, double x, double rx) {
        double max;
-        double LeftFrontPower  = axial + lateral + yaw;
-        double RightFrontPower = axial - lateral - yaw;
-        double LeftBackPower   = axial - lateral + yaw;
-        double RightBackPower  = axial + lateral - yaw;
+        double LeftFrontPower  = y + x + rx;
+        double RightFrontPower = y - x - rx;
+        double LeftBackPower   = y - x + rx;
+        double RightBackPower  = y + x - rx;
 
         max = Math.max(Math.abs(LeftFrontPower), Math.abs(RightFrontPower));
         max = Math.max(max, Math.abs(LeftBackPower));

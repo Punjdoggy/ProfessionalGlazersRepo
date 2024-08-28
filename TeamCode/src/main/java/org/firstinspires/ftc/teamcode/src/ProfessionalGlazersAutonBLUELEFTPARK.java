@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
@@ -22,6 +23,9 @@ import org.openftc.easyopencv.OpenCvCameraRotation;
 import java.util.ArrayList;
 
 @Autonomous
+
+@Disabled
+
 public class ProfessionalGlazersAutonBLUELEFTPARK extends LinearOpMode
 {   
     //INTRODUCE VARIABLES HERE
@@ -31,6 +35,7 @@ public class ProfessionalGlazersAutonBLUELEFTPARK extends LinearOpMode
 //    private DcMotor leftBackDrive = null;
 //    private DcMotor rightFrontDrive = null;
 //    private DcMotor rightBackDrive = null;
+
 
 
 

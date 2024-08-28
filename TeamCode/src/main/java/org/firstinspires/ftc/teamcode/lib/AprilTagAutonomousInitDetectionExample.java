@@ -22,6 +22,7 @@
 package org.firstinspires.ftc.teamcode.lib;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
@@ -35,6 +36,8 @@ import java.util.ArrayList;
 
 //THIS IS USED TO TEST IF DETECTION WORKS AND WHAT THE NUMBERS ARE FOR THE APRIL TAG, NOT FOR ANY MOVEMENT TESTING
 @Autonomous
+
+@Disabled
 public class AprilTagAutonomousInitDetectionExample extends LinearOpMode
 {
     OpenCvCamera camera;

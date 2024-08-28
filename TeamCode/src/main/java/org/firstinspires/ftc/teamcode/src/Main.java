@@ -1,5 +1,8 @@
 package org.firstinspires.ftc.teamcode.src;
 
+import com.acmerobotics.dashboard.FtcDashboard;
+import com.acmerobotics.dashboard.config.Config;
+import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.CRServo;
@@ -13,12 +16,12 @@ import org.firstinspires.ftc.teamcode.lib.SliderController;
 import org.firstinspires.ftc.teamcode.lib.ServoController;
 
 
-@TeleOp(name="MainTest", group="Linear OpMode")
-//@Disabled
+@TeleOp(name="MainTest", group="OpMode")
+@Config()
 public class Main extends LinearOpMode {
 
     private ElapsedTime runtime = new ElapsedTime();
-
+    public static double  strafeTuning = 1;
     @Override
     public void runOpMode() {
 
@@ -30,29 +33,22 @@ public class Main extends LinearOpMode {
                 hardwareMap.get(DcMotor.class, "1")
         );
 
-//        SliderController.initialiseSLide(
-//                hardwareMap.get(DcMotor.class, "slider")
-//        );
-//
         ServoController.initservos(
                 hardwareMap.get(CRServo.class,"servo1"),
-                hardwareMap.get(CRServo.class,"servo2"),
-                hardwareMap.get(Servo.class, "servo3"),
-                hardwareMap.get(CRServo.class, "testservo")
+                hardwareMap.get(Servo.class,"intakeservo")
                 );
 
 
         telemetry.addData("Status", "Initialized");
         telemetry.update();
-        ServoController.lastpowerrange =0;
+        ServoController.lastpowerrange =-0.228;
         waitForStart();
         runtime.reset();
-
-//        SliderController.resetEncoder();
+        telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
 
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
-            MotorController.drivemotors(gamepad1.left_stick_y, gamepad1.left_stick_x, gamepad1.right_stick_x);
+            MotorController.driveMotors(-gamepad1.left_stick_y, -gamepad1.left_stick_x * strafeTuning, -gamepad1.right_stick_x);
 
             ServoController.runarmservo(gamepad1.a, gamepad1.b, gamepad1.dpad_left, gamepad1.dpad_right);
             ServoController.runintakeServo(gamepad1.left_bumper, gamepad1.right_bumper);
@@ -63,6 +59,8 @@ public class Main extends LinearOpMode {
             telemetry.addLine("Gamepad Left Stick Y (Axial):" + gamepad1.left_stick_y);
             telemetry.addLine("Gamepad Left Stick X (Laterial):" + gamepad1.left_stick_x);
             telemetry.addLine("Gamepad Right Stick X (Yaw):" + gamepad1.right_stick_x);
+            telemetry.addLine("Armpower" + ServoController.power);
+            telemetry.addLine("ArmBackPower" + ServoController.backpower);
             telemetry.update();
         }
     }}
